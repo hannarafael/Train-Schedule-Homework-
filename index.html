@@ -1,91 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Title</title>
-</head>
+	<meta charset="UTF-8">
+	<title>Choo Choo!</title>
 
+	<!-- Adding the Database to my code -->
+	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+	
+	<!-- Adding jQuery-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<!-- Adding Bootstrap CDN to my code -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Connecting my CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+    <!-- Adding fonts from Google-->
+	<link href="https://fonts.googleapis.com/css?family=Lemonada|Roboto|Vibur" rel="stylesheet">
+	
+	<!-- Adding moment.js-->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	</head>
 <body>
 
-
-
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-3">TRAIN SCHEDULE</h1>
-            <p class="lead">A Comprehensive Database of Employee Billable Hours</p>
-        </div>
-    </div>
-
-    <div class="container">
-            <!-- Section 1 - Add Employee -->
-           <div class="row">
-           <form class="col-md-12" id="form">
-               <label><h2>Add Employee</h2></label>
-                   <div class="form-group">
-                       <label for="employeeName">Employee Name:</label>
-                       <input type="text" class="form-control" id="employeeName" placeholder="John Smith">
-                   </div>
-                   <div class="form-group">
-                       <label for="role">Role:</label>
-                       <input type="text" class="form-control" id="role" placeholder="Junior Web Developer">
-                   </div>
-                   <div class="form-group">
-                       <label for="date">Start Date (MM/DD/YYYY)</label>
-                       <input type="text" class="form-control" id="date" placeholder="07/12/2018">
-                   </div>
-                   <div class="form-group">
-                       <label for="rate">Monthly Rate::</label>
-                       <input type="text" class="form-control" id="rate" placeholder="35000">
-                   </div>
-                   <button class="btn btn-primary" id='submit-employee'>Submit</button>                
-           </form>
-           </div>
-           <!-- Section 2 - Current Employee -->
-           <div class="row">
-               <div class="col-md-12">
-                   <label><h2>Current Employees</h2></label>
-                       <table class="table table-hover">
-                       <thead>
-                           <tr>
-                           <th scope="col">Employee Name</th>
-                           <th scope="col">Role</th>
-                           <th scope="col">Start Date</th>
-                           <th scope="col">Months Worked</th>
-                           <th scope="col">Monthly Rate (﹩)</th>
-                           <th scope="col">total Billed (﹩)</th>
-                           </tr>
-                       </thead>
-                       <!-- Data -->
-                       <tbody id="employees">
-                           <tr>
-                           <td scope="row">Mark</td>
-                           <td>Sr. Web Developer</td>
-                           <td>10/20/2000</td>
-                           <td>542</td>
-                           </tr>
-                           
-                       </tbody>
-                       </table>
-               </div>
-           </div>                                                            
-       </div>
-
-       <script> 
-
-
-       
-       
-       </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<div class="wrapper">
+	
+	    <div class="jumbotron">
+          <h1>All Aboard!</h1>
+          <p class="pHeader">Don't Miss Your Train! Check the Schedule Below!</p>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">Current Train Schedule</div>
+		  <div class="panel-body">
+			<table class="table table-striped" id="trainScheduleTable">
+				  <thead>
+					<tr>
+					  <th>Train Name</th>
+					  <th>Destination</th>
+					  <th>Frequency (min)</th>
+					  <th>Next Arrival</th>
+					  <th>Minutes Away</th>
+					</tr>
+				  </thead>
+				  <tbody>
+				  </tbody>
+			</table>
+		</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Add Train</div>
+			<div class="panel-body">
+				<div class="form">
+					<form>
+					  <div class="form-group">
+						<label for="trainNameForm">Train Name</label>
+						<input type="text" class="form-control" id="trainNameForm">
+					  </div>
+					  <div class="form-group">
+						<label for="destinationForm">Destination</label>
+						<input type="text" class="form-control" id="destinationForm">
+					  </div>
+					  <div class="form-group">
+						<label for="firstTrainTimeForm">First Train Time (HH:mm - Military Time)</label>
+						<input type="text" class="form-control" id="trainTimeForm">
+					  </div>
+					  <div class="form-group">
+						<label for="frequency">Frequency (min)</label>
+						<input type="text" class="form-control" id="frequencyForm">
+					  </div>
+					  <button type="submit" class="btn btn-default" id="click-button">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	
+	<!-- Connecting my JS file -->
+	<script src="assets/js/script.js"></script>
 </body>
-
 </html>
+

@@ -1,0 +1,51 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.pHeader {
+    text-align: center;
+    color: white;
+}
+
+.jumbotron {
+	border-radius: 25px;
+    background-color: rgb(119, 143, 248);
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+}
+
+
+/*
+.wrapper {
+    background-image: url("http://i.imgur.com/BFBYJUV.jpg");
+}
+*/
+
+.table {
+   font-family: 'Roboto', sans-serif;
+
+}
+
+caption {
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
+
+.panel {
+	border-radius: 25px;
+/*    background-color: #62929E;*/
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+	
+}
+
+.panel-default>.panel-heading{
+	border-radius: 15px 15px 0px 0px;
+	border-style: solid;
+	border-width: 1px;
+	
+}
+
